@@ -1,0 +1,143 @@
+<title>Сценарии English на каждый день</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Onest:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: narrow reading column; day strip on top, five scenario sheets stacked, each a copy-ready post */
+:root{
+  --bg:#F3F4F9; --sheet:#FFFFFF; --ink:#181C36; --muted:#5D6280; --line:#DDE0EC;
+  --accent:#2F49D1; --accent-ink:#FFFFFF; --mark:#FFE766; --mark-ink:#181C36; --soft:#E8EBFA;
+  --f-display:"Unbounded","Onest",system-ui,sans-serif;
+  --f-body:"Onest",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#10122A; --sheet:#181B38; --ink:#ECEEFB; --muted:#A3A8C8; --line:#2C3058;
+  --accent:#7D92FF; --accent-ink:#10122A; --mark:#5B5320; --mark-ink:#FFF3A8; --soft:#232852; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#10122A; --sheet:#181B38; --ink:#ECEEFB; --muted:#A3A8C8; --line:#2C3058;
+  --accent:#7D92FF; --accent-ink:#10122A; --mark:#5B5320; --mark-ink:#FFF3A8; --soft:#232852; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.55}
+.wrap{max-width:760px;margin:0 auto;padding-inline:16px;padding-block:28px 64px;display:flex;flex-direction:column;gap:22px}
+header{display:flex;flex-direction:column;gap:8px}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+h1{font-family:var(--f-display);font-weight:700;font-size:clamp(24px,5vw,34px);line-height:1.15;margin:0;text-wrap:balance}
+h1 em{font-style:normal;background:linear-gradient(transparent 55%,var(--mark) 55%);color:var(--ink);padding-inline:2px}
+.sub{color:var(--muted);margin:0;max-width:60ch}
+.days{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;scrollbar-width:thin}
+.day{flex:0 0 auto;border:1px solid var(--line);background:var(--sheet);color:var(--ink);border-radius:10px;padding:8px 12px;font:inherit;font-size:13px;cursor:pointer;display:flex;flex-direction:column;align-items:flex-start;gap:2px;font-variant-numeric:tabular-nums}
+.day small{font-family:var(--f-mono);font-size:11px;color:var(--muted)}
+.day[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.day[aria-pressed="true"] small{color:var(--accent-ink);opacity:.8}
+.day:focus-visible,.btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.rubrics{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-family:var(--f-mono);font-size:11px;padding:3px 8px;border-radius:99px;background:var(--soft);color:var(--muted)}
+.chip.on{background:var(--mark);color:var(--mark-ink)}
+.sheet{background:var(--sheet);border:1px solid var(--line);border-radius:14px;padding:20px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.sheet-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
+.rnum{font-family:var(--f-mono);font-size:12px;color:var(--accent);font-weight:600;letter-spacing:.04em}
+.rname{font-family:var(--f-display);font-weight:500;font-size:17px;margin:2px 0 0}
+.btn{border:1px solid var(--accent);background:var(--accent);color:var(--accent-ink);font:inherit;font-size:13px;font-weight:600;border-radius:8px;padding:7px 12px;cursor:pointer;white-space:nowrap}
+.btn.ghost{background:transparent;color:var(--accent)}
+.hooks{display:flex;flex-direction:column;gap:6px;margin:0;padding:0;list-style:none}
+.hooks li{font-weight:600;font-size:16px}
+.hooks li span{background:linear-gradient(transparent 60%,var(--mark) 60%);color:var(--ink)}
+.label{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.text{margin:0;max-width:65ch}
+.ex{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;border-top:1px solid var(--line)}
+.ex li{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:4px 16px;padding:9px 0;border-bottom:1px solid var(--line)}
+.ex .en{font-weight:600}
+.ex .ru{color:var(--muted)}
+.ex .ctx,.ex .note{grid-column:1/-1;font-size:13px;color:var(--muted)}
+.ex .ctx i{color:var(--ink)}
+.ex .note{color:var(--accent)}
+@media (max-width:520px){.ex li{grid-template-columns:1fr}}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.box p{margin:0}
+.tags{font-family:var(--f-mono);font-size:12px;color:var(--accent);word-break:break-word}
+.empty{background:var(--sheet);border:1px dashed var(--line);border-radius:14px;padding:28px 20px;display:flex;flex-direction:column;gap:8px}
+.empty h2{font-family:var(--f-display);font-size:18px;font-weight:500;margin:0}
+.empty p{margin:0;color:var(--muted)}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:8px 14px;border-radius:8px;font-size:13px}
+footer{font-size:12px;color:var(--muted);font-family:var(--f-mono)}
+@media (prefers-reduced-motion:no-preference){.sheet{animation:in .3s ease both}@keyframes in{from{transform:translateY(6px)}to{transform:none}}}
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow" id="today">Астана · каждый день в 12:00</div>
+    <h1>5 сценариев <em>English</em> на сегодня</h1>
+    <p class="sub">Каждый день в 12:00 — пять постов в ваших форматах с новыми словами, без повторов.</p>
+  </header>
+  <nav class="days" id="days" aria-label="Дни"></nav>
+  <div class="rubrics" id="rubrics" aria-label="Рубрики дня"></div>
+  <main id="list" style="display:flex;flex-direction:column;gap:18px">
+    <div class="empty">
+      <h2>Сценарии загружаются…</h2>
+      <p>Если их ещё нет, первая пятёрка появится сегодня в 12:00 по Астане.</p>
+    </div>
+  </main>
+</div>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+const RUBRICS={1:"Natural C1",2:"Smart words",3:"B2 confusing pairs",4:"Everyday native idioms",5:"Professional English",6:"Phrasal verbs instead of boring verbs",7:"Strong adjectives instead of “very”",8:"Polysemy / second meanings",9:"Chat abbreviations",10:"Emotions without “very”"};
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+let days=[],current=null;
+
+function fmtDate(id,short){
+  const d=new Date(id+"T12:00:00+05:00");
+  if(isNaN(d))return id;
+  return d.toLocaleDateString("ru-RU",short?{day:"numeric",month:"short"}:{weekday:"long",day:"numeric",month:"long"});
+}
+function toText(s){return String(s.post||"")}
+function toast(m){const t=$("#toast");t.textContent=m;t.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>t.hidden=true,1800)}
+async function copy(text,btn){
+  try{await navigator.clipboard.writeText(text);toast("Скопировано")}
+  catch(e){const ta=document.createElement("textarea");ta.value=text;document.body.appendChild(ta);ta.select();try{document.execCommand("copy");toast("Скопировано")}catch(_){toast("Выделите текст вручную")}ta.remove()}
+}
+function renderDays(){
+  const nav=$("#days");nav.innerHTML="";
+  days.forEach(d=>{
+    const b=document.createElement("button");b.className="day";b.type="button";
+    b.setAttribute("aria-pressed",d.id===current?"true":"false");
+    b.innerHTML=`<span>${esc(fmtDate(d.id,true))}</span><small>${(d.data.scenarios||[]).length} шт.</small>`;
+    b.onclick=()=>{current=d.id;render()};nav.appendChild(b);
+  });
+}
+function render(){
+  renderDays();
+  const list=$("#list"),rub=$("#rubrics");
+  const day=days.find(d=>d.id===current);
+  if(!day){rub.innerHTML="";list.innerHTML=`<div class="empty"><h2>Пока пусто</h2><p>Первая пятёрка сценариев появится сегодня в 12:00 по Астане. Дальше новые будут приходить каждый день в это же время.</p></div>`;return}
+  $("#today").textContent="Астана · "+fmtDate(day.id);
+  const sc=day.data.scenarios||[];
+  rub.innerHTML=Object.entries(RUBRICS).map(([n,name])=>`<span class="chip ${sc.some(s=>+s.rubric===+n)?"on":""}" title="${esc(name)}">${n}</span>`).join("");
+  list.innerHTML="";
+  const all=document.createElement("div");all.style.cssText="display:flex;justify-content:flex-end";
+  const ab=document.createElement("button");ab.className="btn ghost";ab.type="button";ab.textContent="Скопировать все 5";
+  ab.onclick=()=>copy(sc.map(toText).join("\n\n————————\n\n"),ab);all.appendChild(ab);list.appendChild(all);
+  sc.forEach(s=>{
+    const el=document.createElement("article");el.className="sheet";
+    const lines=String(s.post||"").split("\n");
+    el.innerHTML=`
+      <div class="sheet-top"><div><div class="rnum">РУБРИКА ${esc(s.rubric)}</div><h2 class="rname">${esc(s.rubricName||RUBRICS[s.rubric])}</h2></div>
+      <button class="btn" type="button">Скопировать</button></div>
+      <p class="hooks"><span>${esc(lines[0])}</span></p>
+      <ul class="ex">${lines.slice(1).filter(l=>l.trim()).map(l=>{const i=l.indexOf(" — ");return i>0?`<li><span class="en">${esc(l.slice(0,i))}</span><span class="ru">${esc(l.slice(i+3))}</span></li>`:`<li><span class="en">${esc(l)}</span></li>`}).join("")}</ul>`;
+    el.querySelector(".btn").onclick=e=>copy(toText(s),e.target);
+    list.appendChild(el);
+  });
+}
+(async()=>{
+  const db=await claude.use("db");
+  if(!db){$("#list").innerHTML=`<div class="empty"><h2>Нет доступа к данным</h2><p>Откройте страницу, войдя в свой аккаунт Claude.</p></div>`;return}
+  db.collection("days").orderBy("date","desc").limit(60).onSnapshot(snap=>{
+    const keepLatest=!current||current===days[0]?.id;
+    days=snap.docs.map(d=>({id:d.id,data:d.data()}));
+    if(keepLatest||!days.find(d=>d.id===current))current=days[0]?.id||null;
+    render();
+  },()=>{$("#list").innerHTML=`<div class="empty"><h2>Не удалось загрузить</h2><p>Обновите страницу через минуту.</p></div>`});
+})();
+</script>
